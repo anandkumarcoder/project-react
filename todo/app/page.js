@@ -8,15 +8,28 @@ const page = () => {
 
   const [title, setTitle] = useState("")
 const [desc, setDesc] = useState("")
+const [mainTask, setMainTask] = useState([])
 
 const submitHandler = (e) =>{
  e.preventDefault()
-console.log(title);
-console.log(desc);
+setMainTask([...mainTask, {title, desc}])
 
-setTitle("")
+setTitle("") // will set the input box empty after the click on add to ask btn
 setDesc("")
+
+console.log(mainTask);
 }
+
+let renderTask = <h2>No task available</h2>
+
+renderTask = mainTask.map((target, index) => {
+return (
+  <div className='flex justify-between'>
+    <h5>{target.title}</h5>
+    <h5>{target.desc}</h5>
+  </div>
+)
+})
 
   return (
   <>
@@ -42,6 +55,13 @@ setDesc("")
   <button className='bg-black text-white text-2xl px-4 py-2 rounded bold m-5'>Add task</button>
 
 </form>
+
+<hr  />
+
+<div className='p-8 bg-slate-200'>
+
+  <ul>{renderTask}</ul>
+</div>
   </>
   )
 }
