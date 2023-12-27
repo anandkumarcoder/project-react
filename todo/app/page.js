@@ -22,14 +22,16 @@ console.log(mainTask);
 
 let renderTask = <h2>No task available</h2>
 
-renderTask = mainTask.map((target, index) => {
-return (
-  <div className='flex justify-between'>
-    <h5>{target.title}</h5>
-    <h5>{target.desc}</h5>
-  </div>
-)
-})
+if(mainTask.length > 0){
+  renderTask = mainTask.map((target, index) => {
+    return (
+      <div className='flex justify-between mb-5'>
+        <h5 className='text-xl font-semibold'>{target.title}</h5>
+        <h6  className='text-xl font-semibold'>{target.desc}</h6>
+      </div>
+    )
+    })
+}
 
   return (
   <>
